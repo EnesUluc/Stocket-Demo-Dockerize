@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Product List | Category</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/images/style.css}">
+  <style>
+    body{
+      background-color:  #F2EDD1  ;
+    }
+    section{
+      padding: 16px;
+    }
+    #box{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem;
+        justify-self: center;
+        border-radius: 8px;
+        padding: 16px;
+    }
+    @media(max-width: 600px){
+      #box{
+        grid-template-columns: repeat(1,1fr);
+        gap: 1rem;
+      }
+    }
+    .card{
+      padding: 8px;
+      background-color: #F9CB99;
+    }
+    .card:hover{
+      transition-duration: 0.8s;
+      background-color: #E1AA36;
+      cursor: pointer;
+    }
+
+    h2{
+        text-align: center;
+    }
+    .authorize a{
+        margin: 2rem;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="back">
+    <a th:href="@{/categories/}"><img th:src="@{/images/back.png}"></a>
+  </div>
+
+  <section>
+    <div>
+      <h2 th:text="${categoryName}"></h2>
+    </div>
+
+    <div id="box">
+      <div class="card" style="width:18rem;" th:each="tempData: ${productList}">
+        <div>
+          <img th:src="@{/images/stock-image.jpg}" style="width: 100%;">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${tempData.name}"></h5>
+          <p class="card-title" th:text="${tempData.description}"></p>
+          <h6 class="card-title" th:text="${tempData.price} + '$'"></h6>
+          <a  sec:authorize="hasAuthority('ROLE_CUSTOMER')" class="btn btn-primary" th:href="@{/cart/add(productId=${tempData.id})}">Add to Card</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+</body>
+</html>

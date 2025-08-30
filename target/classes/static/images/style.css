@@ -1,0 +1,165 @@
+
+body{
+    background-color: #FFFFF0;
+}
+a{
+    text-decoration:none;
+    color: #fff;
+}
+.btn{
+    display: inline-block;
+    color: white;
+    padding: .4rem 1.6rem;
+    border-radius:4px;
+}
+.btn-primary{
+    background-color: #FEA405;
+    margin-bottom: .8rem;
+}
+.btn-secondary{
+    background-color:#8AA624;
+    border:1px solid #FEA405;
+}
+.btn:hover{
+    opacity:0.8;
+}
+#update,#delete{
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+#delete{
+    padding: .3rem;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+}
+#delete:hover{
+    cursor: pointer;
+    background-color: red;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+#update{
+    padding: .3rem;
+    background-color: white;
+    border: 2px solid #04AA6D;
+    color: green;
+}
+#update:hover{
+    cursor: pointer;
+    background-color: #04AA6D;
+    color: white;
+    border: 2px solid white;
+    text-decoration: none;
+}
+
+/*navbar*/
+img{
+    width: 100%;
+}
+#main-nav{
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+#main-nav .container{
+    display: grid;
+    grid-template-columns: 0.6fr 2fr 0.4fr 0.3fr;
+    align-items: center;
+    padding: 1rem;
+}
+#main-nav .logo{
+    width: 60px;
+}
+#main-nav i{
+   padding: .4rem;
+}
+#main-nav i:hover{
+   color: rgb(85, 80, 80);
+}
+#main-nav .header{ justify-self: center;}
+#main-nav .social-icons{
+    justify-self: end;
+}
+
+#main-nav #settings{
+    justify-self: end;
+}
+#main-nav #settings:hover{
+    cursor: pointer;
+}
+
+/*content*/
+.header{
+    margin-top: 1rem;
+    text-align:center;
+}
+.card{
+     background-color: #DBE4C9;
+ }
+.card:hover{
+    opacity: .8;
+}
+.content .categories{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-self: center;
+    border-radius: 8px;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+
+}
+.main-nav .authorize{
+    margin: 2rem;
+}
+.content .categories .card{
+    margin-bottom: 24px;
+}
+.content .categories .card:hover{
+    cursor: pointer;
+}
+@media(max-width:960px){
+    .content .categories{
+        grid-template-columns: repeat(2,1fr);
+
+    }
+}
+@media(max-width:660px){
+    .content .categories{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+.content .categories img{
+    height: 160px;
+}
+.content .categories .card-body{
+    text-align:center;
+}
+
+/*authorize*/
+.authorize{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self:center;5rb
+}
+
+/*Back icon*/
+.back{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+.back a{
+    width: 30px;
+}
+.back a img{
+    width: 100%;
+}
+.back a img:hover{
+    cursor: pointer;
+}

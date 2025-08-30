@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body{
+            background-color: #222831;
+        }
+        .navbar{
+            display: block;
+            padding: 1.6rem;
+            margin: 1.2rem;
+            color: #fff;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            margin: 1rem;
+        }
+        .container .col-1,.col-2,.col-3,.col-4,.col-5{
+            border: 1px solid #ECEFCA;
+            text-align: center;
+
+        }
+        strong{
+            color:#fff;
+        }
+        .container div > *{
+            padding: 4px;
+            margin: 4px;
+        }
+        .container #a{
+            height: 50px;
+            margin-top: .6rem;
+        }
+        .container .col-1 i{
+            color: rgb(100, 149, 237);
+        }
+        .container .col-2 i{
+            color: #D93025;
+        }
+        .container .col-3 i{
+            color: #E1AA36;
+        }
+        .container .col-4 i{
+            color: #0046FF;
+        }
+        .container .col-5 i{
+            color: rgb(144, 238, 144);
+        }
+
+        @media(max-width:756px){
+            .container{
+                grid-template-columns: repeat(2,1fr);
+        }
+        }
+
+        .chart{
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            gap: 3rem;
+       }
+       .chart h1{
+            text-align: center;
+            color: #E1AA36;
+            opacity: 0.8;
+            margin: 2rem;
+       }
+       #productCategoryChart {
+            width: 100% !important;
+            height: auto !important;
+       }
+        #activeUsersChart{
+            max-width: 450px;
+            height: auto !important;
+            justify-self: center;
+        }
+
+    </style>
+</head>
+<body>
+<section class="navbar">
+    <div>ADMIN DASHBOARD</div>
+</section>
+
+<section class="container">
+    <div class="col-1">
+        <div><i class="fa-solid fa-user"></i> <strong>Total Registered Customers</strong></div>
+        <div><strong th:text="${customerCount}"></strong></div>
+    </div>
+    <div class="col-2">
+        <div><i class="fa-regular fa-envelope"></i> <strong>Registered Today</strong></div>
+        <div><strong th:text="${registeredToday}"></strong></div>
+    </div>
+    <div class="col-3">
+        <div><i class="fa-solid fa-bag-shopping"></i> <strong>Total Product Available</strong></div>
+        <div><strong th:text="${productCount}"></strong></div>
+    </div>
+    <div class="col-4">
+        <div><i class="fa-solid fa-bookmark"></i> <strong>Number of Categories</strong></div>
+        <div><strong th:text="${categoryCount}"></strong></div>
+    </div>
+    <div class="col-5">
+        <div><i class="fa-solid fa-user"></i> <strong>Active Users</strong></div>
+        <div><strong th:text="${active}"></strong></div>
+    </div>
+
+</section>
+
+
+
+<br>
+<br>
+
+    <section class="chart">
+        <div>
+            <h1>Stock Distribution by Category</h1>
+            <canvas id="productCategoryChart"></canvas>
+        </div>
+        <div>
+            <h1>Total vs Active Users</h1>
+            <canvas id="activeUsersChart"></canvas>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script th:inline="javascript">
+        const ctx = document.getElementById('productCategoryChart');
+
+        var categories = /*[[${categories}]]*/ '[]';
+        categories = JSON.parse(categories);
+
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: categories.map(c=>c.categoryName),
+            datasets: [{
+              label: 'Stock Count / Category',
+              data: categories.map(c=>c.stockNumber),
+              backgroundColor: 'rgba(223,228,184,0.8)',
+              borderColor: 'rgba(148,137,121,1)',
+              borderRadius: 6,
+              borderWidth: 2
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                    color: '#fff'
+                }
+              },
+              x:{
+                ticks: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold'
+                    }
+                }
+              }
+            }
+          }
+        });
+    </script>
+
+
+    <script th:inline="javascript">
+        const ctx2 = document.getElementById('activeUsersChart');
+
+        let totalUsers = [[${customerCount}]];
+        let activeUsers = [[${active}]];
+
+        new Chart(ctx2, {
+          type: 'bar',
+          data: {
+            labels: ['Total','Active'],
+            datasets: [{
+              label: 'Total / Active Users',
+              data:[totalUsers,activeUsers],
+              backgroundColor: ['rgba(100, 149, 237, 0.8)','rgba(144, 238, 144, 0.8)'],
+              borderRadius: 6,
+              borderWidth: 2
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                    color: '#fff'
+                }
+              },
+              x:{
+                ticks: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold'
+                    }
+                }
+              }
+            }
+          }
+        });
+    </script>
+
+</body>
+</html>

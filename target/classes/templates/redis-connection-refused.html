@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Connection Refused</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        section{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f6f9;
+
+
+        }
+        .container{
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+        }
+        button{
+            margin: .4rem;
+            padding: .6rem 1.5rem;
+            border-radius: 4px;
+            border: none;
+            background-color: #c0392b;
+            color: #fff;
+            font-size: 1rem;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+        h1{
+            color: #e74c3c;
+            font-size: 1.8rem;
+        }
+        p{
+            color: #212529;
+            font-size: 1rem;
+        }
+        strong{
+            color: #c0392b;
+            font-size: 1.1rem;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>Cart Unavailable</h1>
+            <p>We are currently unable to retrieve your cart information.</p>
+            <p><strong>Please try again.</strong></p>
+           <a th:href="@{/categories/}"> <button>Back</button></a>
+        </div>
+    </section>
+
+</body>
+</html>

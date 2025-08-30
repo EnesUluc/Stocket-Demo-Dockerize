@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/images/style.css}">
+    <style>
+
+
+    form{
+      width: 70%;
+      margin-left: 20%;
+    }
+    h2{
+      margin-top: 3rem;
+      text-align: center;
+    }
+      .error{
+        color: red;
+      }
+
+  </style>
+</head>
+<body>
+    <div class="back">
+        <a th:href="@{/details/}"><img th:src="@{/images/back.png}"></a>
+    </div>
+    <div class="title">
+      <h2>Manager Category List</h2>
+      <hr>
+    </div>
+
+    <div class="table">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th><th>Name</th><th>Stock Count</th><th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempData : ${categoryList}">
+            <td th:text="${tempData.categoryId}"></td>
+            <td th:text="${tempData.categoryName}"></td>
+            <td th:text="${tempData.getStockNumber}"></td>
+            <td>
+                <a th:href="@{/categories/delete(categoryId=${tempData.categoryId})}" id="delete" onclick="if (!(confirm('Are you sure you want to delete the category?'))) return false">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div><h2>Add a Category</h2></div>
+    <div>
+      <div>
+        <form action="#" th:action="@{/categories/}" th:object="${theCategory}" method="post">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control"  placeholder="Name" th:field="*{categoryName}"><span th:if="${#fields.hasErrors('categoryName')}"
+                                                                                                         th:errors="*{categoryName}"
+                                                                                                         class="error"></span>
+          </div>
+          <button type="submit" class="btn btn-primary" onclick="if (!(confirm('Are you sure you want to add this category?'))) return false">Save</button>
+        </form>
+        <hr>
+      </div>
+    </div>
+</body>
+</html>

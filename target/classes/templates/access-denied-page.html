@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ACCESS DENIED</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        a.button {
+            background-color: #0275d8;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a.button:hover {
+            background-color: #025aa5;
+            cursor:pointer;
+        }
+        .icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="icon">🚫</div>
+<h1>403 - Access Denied</h1>
+<p>Sorry, you don’t have permission to access this page.<br />
+    Please log in with an authorized account or return to the homepage.</p>
+<a th:href="@{/}" class="button">Go to Homepage</a>
+
+</body>
+</html>

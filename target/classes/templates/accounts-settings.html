@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Account | Settings</title>
+    <link rel="stylesheet" th:href="@{/images/style.css}">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .user-card{
+            padding: 1rem;
+            background-color: #F2EDD1;
+            border-radius: 8px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .user-card div{
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-bottom: 2px dotted #689B8A;
+        }
+        .user-card .delete-button{
+            grid-template-columns: repeat(1,1fr);
+        }
+        .user-card .edit-button{
+            grid-template-columns: repeat(1,1fr);
+        }
+        .user-card div label:last-child{
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .delete{
+            background-color: #fff;
+            border: 1px solid red;
+            padding: .6rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .delete:hover{
+            background-color: red;
+            border: 1px solid white;
+            color: #F2EDD1;
+            transition-duration: .4s;
+            cursor: pointer;
+        }
+
+        .edit{
+            background-color: #fff;
+            border: 1px solid #00809D;
+            padding: .6rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #00809D;
+        }
+        .edit:hover{
+            background-color: #00809D;
+            border: 1px solid #fff;
+             color: #fff;
+            transition-duration: .4s;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+            color: red;
+            text-align:center;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #F2EDD1;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="back">
+        <a th:href="@{/categories/}"><img th:src="@{/images/back.png}"></a>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="user-card animate__animated animate__bounce">
+                <div>
+                    <label><strong>Full Name</strong></label>
+                    <label th:text="${customer.name} + ' ' + ${customer.surname}"></label>
+                </div>
+                <div>
+                    <label><strong>Email</strong></label>
+                    <label th:text="${customer.email}"></label>
+                </div>
+                <div>
+                    <label><strong>Phone</strong></label>
+                    <label th:text="${customer.phone}"></label>
+                </div>
+
+                <div class="delete-button">
+                    <a class="delete" th:href="@{/accounts/delete(email=${customer.email})}" id="delete" onclick="if (!(confirm('Are you sure you want to delete this account?'))) return false">Delete Account</a>
+                </div>
+
+                <div class="edit-button">
+                    <a class="edit" th:href="@{/customers/edit(email=${customer.email})}" id="edit" >Edit Account</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
