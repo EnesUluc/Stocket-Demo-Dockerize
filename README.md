@@ -1,5 +1,13 @@
 # Stocket Demo
 
+## System Requirements
+
+- Docker Desktop (Windows/Mac) or Docker Engine (Linux)
+- Docker version >= 20.10
+- Docker Compose >= 1.29
+- At least 2 GB RAM allocated to Docker
+- A modern web browser (Chrome, Firefox, Edge)
+
 ## ✨⬆️ How to Start the System
 1- Start the system with Docker Compose
 * docker compose up ---build
