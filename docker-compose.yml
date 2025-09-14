@@ -29,7 +29,20 @@ services:
       retries: 10
     networks:
       - "springboot-mysql-net"
-
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/data:/data/db
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - "springboot-mysql-net"
   app:
     build: .
     container_name: stocket-demo
@@ -37,6 +50,8 @@ services:
       mysqldb:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      mongodb:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: docker

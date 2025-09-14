@@ -14,10 +14,7 @@
       2.2 - Add the default admin
       * INSERT INTO user (created_at, enabled, password, username, authorities)
         VALUES (NOW(), true, '$2a$10$XleMszcy2MZN040TMSnGC.mBpEKj81ZwNo9/V.WxcZVMsJzhfqZAW', 'admin', 'ROLE_ADMIN');
-
-      2.3 - Check the database
-      - select * from user;
-      
+  
 3- Access the application
 * Visit: localhost:8080 
   * username: admin  && password: 1313    
@@ -52,6 +49,14 @@ A simple yet effective **e-commerce demo application** built to enhance my skill
   * Total users, active users, new registrations.
   * Category-based product statistics.
   * Graph showing active vs total users.
+
+### Notification System (NEW with MongoDB)
+
+* **Notifications are now stored and managed in MongoDB.
+
+* **Each product-related action** (e.g., new product added, product updated) creates a notification entry for users.
+
+* **This enables a scalable and persistent notification system that can be extended for real-time updates in the future.
 
 ### Technical Features
 

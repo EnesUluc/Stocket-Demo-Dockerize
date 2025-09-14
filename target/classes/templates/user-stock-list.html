@@ -32,6 +32,19 @@
         .second-nav .logout{
             justify-self: end;
         }
+
+        .notification{
+            position: relative;
+        }
+        .notification .badge{
+            position: absolute;
+            top: -30px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +58,13 @@
             </div>
             <div sec:authorize="hasAuthority('ROLE_CUSTOMER')" id="settings">
                 <a th:href="@{/accounts/settings}"><img style="width:45px; border-radius:50%; color: black;" th:src="@{/images/settings-icon.png}"></a>
+            </div>
+
+            <div class="notification-icon" sec:authorize="hasAuthority('ROLE_CUSTOMER')" id="notifications">
+                <a class="notification" th:href="@{/notifications}"><img style="width:35px; border-radius:50%; color: black;" th:src="@{/images/bell.png}">
+                    <span class="badge" th:text="${notificationNumber}"></span>
+                </a>
+
             </div>
             <div sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_MANAGER')" class="authorize">
                 <a class="btn btn-secondary" th:href="@{/details/}">Details</a>
